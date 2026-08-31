@@ -8,6 +8,7 @@ import { Menu, X, Search, Home, Library } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { Logo } from '@/components/ui-bits'
 import { ThemeToggle } from '@/components/theme-toggle'
+import { ElizabethToggle } from '@/components/ElizabethMascot'
 
 const LINKS = [
   { href: '/', label: 'Home', icon: Home },
@@ -58,6 +59,7 @@ export function Navbar() {
           >
             <Search className="size-5" />
           </Link>
+          <ElizabethToggle />
           <ThemeToggle />
           <button
             type="button"

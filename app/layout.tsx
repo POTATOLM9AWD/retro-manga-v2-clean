@@ -2,6 +2,10 @@ import { Analytics } from '@vercel/analytics/next'
 import type { Metadata, Viewport } from 'next'
 import { Baloo_2, Tajawal } from 'next/font/google'
 import { ThemeProvider } from '@/components/theme-provider'
+import {
+  ElizabethProvider,
+  ElizabethMascot,
+} from '@/components/ElizabethMascot'
 import './globals.css'
 
 const baloo = Baloo_2({
@@ -48,7 +52,12 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning className="bg-background">
       <body className={`${baloo.variable} ${tajawal.variable} antialiased`}>
-        <ThemeProvider>{children}</ThemeProvider>
+        <ThemeProvider>
+          <ElizabethProvider>
+            {children}
+            <ElizabethMascot />
+          </ElizabethProvider>
+        </ThemeProvider>
         {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>
     </html>
