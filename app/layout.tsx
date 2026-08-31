@@ -2,10 +2,8 @@ import { Analytics } from '@vercel/analytics/next'
 import type { Metadata, Viewport } from 'next'
 import { Baloo_2, Tajawal } from 'next/font/google'
 import { ThemeProvider } from '@/components/theme-provider'
-import {
-  ElizabethProvider,
-  ElizabethMascot,
-} from '@/components/ElizabethMascot'
+import { ElizabethProvider } from '@/components/ElizabethMascot'
+import Elizabeth from '@/components/elizabeth'
 import './globals.css'
 
 const baloo = Baloo_2({
@@ -55,7 +53,7 @@ export default function RootLayout({
         <ThemeProvider>
           <ElizabethProvider>
             {children}
-            <ElizabethMascot />
+            <Elizabeth />
           </ElizabethProvider>
         </ThemeProvider>
         {process.env.NODE_ENV === 'production' && <Analytics />}
