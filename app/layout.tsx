@@ -17,11 +17,11 @@ const tajawal = Tajawal({
 })
 
 export const metadata: Metadata = {
-  title: 'RETRO MANGA — Rare Old Manga, Lovingly Translated',
+  title: 'ريترو مانجا — مانجا نادرة قديمة، مترجمة بحب',
   description:
-    'RETRO MANGA is the coziest archive of rare manga, manhwa, and manhua from the 70s, 80s, and 90s — translated with love. Read with the best reader in the Arab world.',
+    'ريترو مانجا هو أدفأ أرشيف للمانجا والمانهوا والمانها النادرة من السبعينات والثمانينات والتسعينات — مترجمة بحب. اقرأ مع أفضل قارئ في العالم العربي.',
   generator: 'v0.app',
-  keywords: ['manga', 'manhwa', 'manhua', 'retro', 'translation', 'reader'],
+  keywords: ['مانجا', 'مانهوا', 'مانها', 'ريترو', 'ترجمة', 'قارئ', 'manga'],
   icons: {
     icon: [
       { url: '/icon-light-32x32.png', media: '(prefers-color-scheme: light)' },
@@ -46,8 +46,15 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning className="bg-background">
-      <body className={`${baloo.variable} ${tajawal.variable} antialiased`}>
+    <html
+      lang="ar"
+      dir="rtl"
+      suppressHydrationWarning
+      className="bg-background"
+    >
+      <body
+        className={`${baloo.variable} ${tajawal.variable} font-arabic antialiased`}
+      >
         <ThemeProvider>{children}</ThemeProvider>
         {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>

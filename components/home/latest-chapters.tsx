@@ -9,9 +9,9 @@ import { SectionHeading, TypePill } from '@/components/ui-bits'
 
 function timeAgo(iso: string) {
   const d = new Date(iso)
-  return d.toLocaleDateString('en-US', {
+  return d.toLocaleDateString('ar', {
     year: 'numeric',
-    month: 'short',
+    month: 'long',
     day: 'numeric',
   })
 }
@@ -22,14 +22,14 @@ export function LatestChapters() {
   return (
     <section className="mx-auto max-w-6xl px-4 py-12">
       <SectionHeading
-        kicker="Fresh off the scanner"
-        title="Latest Chapters"
+        kicker="طازج من الماسح الضوئي"
+        title="أحدث الفصول"
         action={
           <Link
             href="/browse"
             className="text-sm font-bold text-primary hover:underline"
           >
-            View all
+            عرض الكل
           </Link>
         }
       />
@@ -65,7 +65,7 @@ export function LatestChapters() {
                   {it.manga.title}
                 </h3>
                 <p className="line-clamp-1 text-sm text-muted-foreground">
-                  Ch. {it.chapter.number} — {it.chapter.title}
+                  الفصل {it.chapter.number} — {it.chapter.title}
                 </p>
                 <p className="mt-0.5 inline-flex items-center gap-1 text-xs text-muted-foreground">
                   <Clock className="size-3" /> {timeAgo(it.chapter.releasedAt)}

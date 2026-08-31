@@ -4,22 +4,28 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Menu, X, Search, Home, Library } from 'lucide-react'
+import { Menu, X, Search, Home, Library, Heart } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { Logo } from '@/components/ui-bits'
 import { ThemeToggle } from '@/components/theme-toggle'
+import { useFavorites } from '@/lib/favorites'
 
 const LINKS = [
-  { href: '/', label: 'Home', icon: Home },
-  { href: '/browse', label: 'Browse', icon: Library },
+  { href: '/', label: 'الرئيسية', icon: Home },
+  { href: '/browse', label: 'المكتبة', icon: Library },
+  { href: '/favorites', label: 'المفضلة', icon: Heart },
 ]
 
 export function Navbar() {
   const pathname = usePathname()
   const [open, setOpen] = useState(false)
+  const { count, ready } = useFavorites()
 
   const isActive = (href: string) =>
     href === '/' ? pathname === '/' : pathname.startsWith(href)
+
+  const labelFor = (href: string, label: string) =>
+    href === '/favorites' && ready ? `${label} (${count})` : label
 
   return (
     <header className="sticky top-0 z-50 border-b-2 border-ink bg-background/85 backdrop-blur supports-[backdrop-filter]:bg-background/70">
@@ -45,7 +51,7 @@ export function Navbar() {
                   transition={{ type: 'spring', stiffness: 400, damping: 30 }}
                 />
               )}
-              {l.label}
+              {labelFor(l.href, l.label)}
             </Link>
           ))}
         </nav>
@@ -53,7 +59,7 @@ export function Navbar() {
         <div className="flex items-center gap-2">
           <Link
             href="/browse"
-            aria-label="Search manga"
+            aria-label="ابحث عن مانجا"
             className="hidden size-10 place-items-center rounded-full border-2 border-ink bg-card shadow-comic-sm transition-transform hover:-translate-y-0.5 sm:grid"
           >
             <Search className="size-5" />
@@ -62,7 +68,7 @@ export function Navbar() {
           <button
             type="button"
             className="grid size-10 place-items-center rounded-full border-2 border-ink bg-card shadow-comic-sm md:hidden"
-            aria-label={open ? 'Close menu' : 'Open menu'}
+            aria-label={open ? 'إغلاق القائمة' : 'فتح القائمة'}
             aria-expanded={open}
             onClick={() => setOpen((o) => !o)}
           >
@@ -95,7 +101,7 @@ export function Navbar() {
                     )}
                   >
                     <Icon className="size-5" />
-                    {l.label}
+                    {labelFor(l.href, l.label)}
                   </Link>
                 )
               })}

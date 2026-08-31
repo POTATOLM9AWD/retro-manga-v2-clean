@@ -9,47 +9,47 @@ export function Footer() {
         <div className="sm:col-span-2 lg:col-span-1">
           <Logo />
           <p className="mt-4 max-w-xs text-sm leading-relaxed text-muted-foreground">
-            A cozy archive of rare manga, manhwa, and manhua from the 70s, 80s,
-            and 90s — translated with love for a new generation.
+            أرشيف مريح للمانجا والمانهوا والمانها النادرة من السبعينات
+            والثمانينات والتسعينات — مترجمة بحب لجيل جديد.
           </p>
         </div>
 
         <FooterCol
-          title="Explore"
+          title="استكشف"
           links={[
-            { href: '/', label: 'Home' },
-            { href: '/browse', label: 'Browse Library' },
-            { href: '/browse', label: 'Latest Chapters' },
-            { href: '/browse', label: 'Most Popular' },
+            { href: '/', label: 'الرئيسية' },
+            { href: '/browse', label: 'تصفح المكتبة' },
+            { href: '/browse', label: 'أحدث الفصول' },
+            { href: '/browse', label: 'الأكثر رواجاً' },
           ]}
         />
         <FooterCol
-          title="Categories"
+          title="التصنيفات"
           links={[
-            { href: '/browse', label: 'Manga' },
-            { href: '/browse', label: 'Manhwa' },
-            { href: '/browse', label: 'Manhua' },
-            { href: '/browse', label: 'Retro Classics' },
+            { href: '/browse', label: 'مانجا' },
+            { href: '/browse', label: 'مانهوا' },
+            { href: '/browse', label: 'مانها' },
+            { href: '/browse', label: 'كلاسيكيات ريترو' },
           ]}
         />
         <FooterCol
-          title="Community"
+          title="المجتمع"
           links={[
-            { href: '/', label: 'Suggest a Title' },
-            { href: '/', label: 'Top Voted' },
-            { href: '/', label: 'Discord' },
-            { href: '/', label: 'About' },
+            { href: '/', label: 'اقترح عنواناً' },
+            { href: '/', label: 'الأعلى تصويتاً' },
+            { href: '/favorites', label: 'المفضلة' },
+            { href: '/', label: 'عن الموقع' },
           ]}
         />
       </div>
 
       <div className="border-t-2 border-ink">
         <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-2 px-4 py-5 text-sm text-muted-foreground sm:flex-row">
-          <p>© {new Date().getFullYear()} RETRO MANGA. Demo UI, no real content.</p>
+          <p>© {new Date().getFullYear()} ريترو مانجا. واجهة تجريبية، بدون محتوى حقيقي.</p>
           <p className="inline-flex items-center gap-1.5">
-            Made with{' '}
-            <Heart className="size-4 fill-primary text-primary" /> for retro
-            readers
+            صُنع بـ{' '}
+            <Heart className="size-4 fill-primary text-primary" /> لعشّاق
+            الريترو
           </p>
         </div>
       </div>

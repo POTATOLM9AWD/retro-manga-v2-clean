@@ -45,31 +45,31 @@
   color-scheme: light;
   --radius: 1.1rem;
 
-  --paper: #fdf6e3;
-  --pink: #ff8fab;
+  --paper: #fff8e7;
+  --pink: #ff8fa3;
   --blue: #8ecae6;
   --yellow: #ffd166;
-  --ink: #3a2f2a;
+  --ink: #2c1810;
 
-  --background: #fdf6e3;
-  --foreground: #3a2f2a;
-  --card: #fffdf6;
-  --card-foreground: #3a2f2a;
-  --popover: #fffdf6;
-  --popover-foreground: #3a2f2a;
-  --primary: #ff8fab;
-  --primary-foreground: #4a2530;
+  --background: #fff8e7;
+  --foreground: #2c1810;
+  --card: #ffffff;
+  --card-foreground: #2c1810;
+  --popover: #ffffff;
+  --popover-foreground: #2c1810;
+  --primary: #ff8fa3;
+  --primary-foreground: #2c1810;
   --secondary: #8ecae6;
-  --secondary-foreground: #1c3b47;
-  --muted: #f2e9d0;
-  --muted-foreground: #8a7a6d;
+  --secondary-foreground: #16323d;
+  --muted: #f6ecd6;
+  --muted-foreground: #8a7563;
   --accent: #ffd166;
   --accent-foreground: #4a3b12;
-  --destructive: #ef5a76;
+  --destructive: #ff3b30;
   --destructive-foreground: #ffffff;
-  --border: #e6d8b8;
-  --input: #e6d8b8;
-  --ring: #ff8fab;
+  --border: #ecdcbc;
+  --input: #ecdcbc;
+  --ring: #ff8fa3;
 }
 
 .dark {
@@ -107,7 +107,7 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground font-sans;
+    @apply bg-background text-foreground font-arabic;
     background-image: radial-gradient(
       rgba(58, 47, 42, 0.05) 1px,
       transparent 1px
@@ -193,5 +193,50 @@
   }
   100% {
     opacity: 0;
+  }
+}
+
+/* Elizabeth the duck — walks across the bottom of the screen */
+@keyframes elizabeth-walk {
+  from {
+    transform: translateX(-280px);
+  }
+  to {
+    transform: translateX(calc(100vw + 350px));
+  }
+}
+
+@keyframes elizabeth-waddle {
+  from {
+    transform: rotate(-7deg);
+  }
+  to {
+    transform: rotate(7deg);
+  }
+}
+
+.elizabeth-walker {
+  position: fixed;
+  bottom: 20px;
+  left: 0;
+  z-index: 100;
+  pointer-events: none;
+  will-change: transform;
+  animation: elizabeth-walk 22s linear forwards;
+}
+
+.elizabeth-waddle {
+  transform-origin: bottom center;
+  animation: elizabeth-waddle 0.4s ease-in-out infinite alternate;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .elizabeth-walker {
+    animation: none;
+    left: auto;
+    right: 20px;
+  }
+  .elizabeth-waddle {
+    animation: none;
   }
 }

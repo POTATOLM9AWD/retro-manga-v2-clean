@@ -1,8 +1,8 @@
 import { Mascot } from '@/components/mascot'
 
 export function EmptyState({
-  title = 'Nothing here yet',
-  message = 'Retro-chan looked everywhere but could not find a match.',
+  title = 'لا يوجد شيء هنا بعد',
+  message = 'بحثت إليزابيث في كل مكان لكنها لم تجد ما يطابق طلبك.',
   mood = 'confused',
 }: {
   title?: string

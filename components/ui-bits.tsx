@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import { Star } from 'lucide-react'
 import { cn } from '@/lib/utils'
-import type { MangaType } from '@/lib/data'
+import { type MangaType, TYPE_AR } from '@/lib/data'
 
 /* Brand wordmark */
 export function Logo({ className }: { className?: string }) {
@@ -11,13 +11,13 @@ export function Logo({ className }: { className?: string }) {
     <Link
       href="/"
       className={cn('group inline-flex items-center gap-2', className)}
-      aria-label="RETRO MANGA home"
+      aria-label="ريترو مانجا — الصفحة الرئيسية"
     >
       <span className="grid size-9 place-items-center rounded-xl border-2 border-ink bg-[color:var(--yellow)] text-lg font-extrabold text-ink shadow-comic-sm transition-transform group-hover:-rotate-6">
-        R
+        ر
       </span>
       <span className="text-xl font-extrabold tracking-tight text-foreground">
-        RETRO<span className="text-primary">MANGA</span>
+        ريترو<span className="text-primary">مانجا</span>
       </span>
     </Link>
   )
@@ -55,7 +55,7 @@ export function Pill({
 
 export function TypePill({ type }: { type: MangaType }) {
   const tone = type === 'Manga' ? 'pink' : type === 'Manhwa' ? 'blue' : 'yellow'
-  return <Pill tone={tone}>{type}</Pill>
+  return <Pill tone={tone}>{TYPE_AR[type]}</Pill>
 }
 
 export function Rating({

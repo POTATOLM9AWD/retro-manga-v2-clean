@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { motion } from 'framer-motion'
-import { ALL_GENRES } from '@/lib/data'
+import { ALL_GENRES, genreAr } from '@/lib/data'
 import { SectionHeading } from '@/components/ui-bits'
 
 const TONES = [
@@ -14,7 +14,7 @@ const TONES = [
 export function Categories() {
   return (
     <section className="mx-auto max-w-6xl px-4 py-12">
-      <SectionHeading kicker="Jump right in" title="Categories" />
+      <SectionHeading kicker="اقفز مباشرة" title="التصنيفات" />
       <div className="flex flex-wrap gap-3">
         {ALL_GENRES.map((genre, i) => (
           <motion.div
@@ -31,7 +31,7 @@ export function Categories() {
                 TONES[i % TONES.length]
               }`}
             >
-              {genre}
+              {genreAr(genre)}
             </Link>
           </motion.div>
         ))}

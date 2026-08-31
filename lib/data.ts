@@ -101,6 +101,35 @@ export const MANGAS: Manga[] = [
   },
 ]
 
+// Arabic display labels (data stays in English; UI renders these).
+export const TYPE_AR: Record<MangaType, string> = {
+  Manga: 'مانجا',
+  Manhwa: 'مانهوا',
+  Manhua: 'مانها',
+}
+
+export const STATUS_AR: Record<MangaStatus, string> = {
+  Ongoing: 'مستمرة',
+  Completed: 'مكتملة',
+  Hiatus: 'متوقفة',
+}
+
+export const GENRE_AR: Record<string, string> = {
+  Action: 'أكشن',
+  Cyberpunk: 'سايبربانك',
+  Drama: 'دراما',
+  'Slice of Life': 'شريحة من الحياة',
+  Fantasy: 'خيال',
+  Romance: 'رومانسي',
+  'Sci-Fi': 'خيال علمي',
+  Mecha: 'ميكا',
+  Family: 'عائلي',
+}
+
+export function genreAr(g: string): string {
+  return GENRE_AR[g] ?? g
+}
+
 export const ALL_GENRES = Array.from(
   new Set(MANGAS.flatMap((m) => m.genres)),
 ).sort()

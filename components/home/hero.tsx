@@ -21,7 +21,8 @@ export function Hero() {
             transition={{ duration: 0.5 }}
           >
             <Pill tone="pink" className="mb-4">
-              <Sparkles className="size-3.5" /> 70s · 80s · 90s classics
+              <Sparkles className="size-3.5" /> كلاسيكيات السبعينات · الثمانينات
+              · التسعينات
             </Pill>
           </motion.div>
 
@@ -29,16 +30,13 @@ export function Hero() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.05 }}
-            className="text-4xl font-extrabold leading-[1.05] tracking-tight text-foreground text-balance sm:text-5xl md:text-6xl"
+            className="text-4xl font-extrabold leading-[1.15] tracking-tight text-foreground text-balance sm:text-5xl md:text-6xl"
           >
-            Rare old manga,{' '}
-            <span
-              className="text-glitch text-primary"
-              data-text="lovingly"
-            >
-              lovingly
-            </span>{' '}
-            translated.
+            مانجا نادرة قديمة،{' '}
+            <span className="text-glitch text-primary" data-text="مترجمة بحب">
+              مترجمة بحب
+            </span>
+            .
           </motion.h1>
 
           <motion.p
@@ -47,9 +45,8 @@ export function Hero() {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="mt-5 max-w-md text-lg leading-relaxed text-muted-foreground text-pretty"
           >
-            Dig through the dusty archives with Retro-chan. Faded covers, warm
-            screentones, and the best reader in the Arab world — all on cozy
-            old paper.
+            نبش في الأرشيف المغبر مع إليزابيث. أغلفة باهتة، وتظليل دافئ، وأفضل
+            قارئ في العالم العربي — كل ذلك على ورق قديم مريح.
           </motion.p>
 
           <motion.div
@@ -59,16 +56,16 @@ export function Hero() {
             className="mt-8 flex flex-wrap gap-3"
           >
             <Link
-              href="/browse"
+              href="/manga/neon-samurai"
               className="inline-flex items-center gap-2 rounded-full border-2 border-ink bg-primary px-6 py-3 text-sm font-extrabold text-primary-foreground shadow-comic transition-transform hover:-translate-y-1 active:translate-y-0"
             >
-              <Library className="size-5" /> Browse Library
+              <BookOpen className="size-5" /> ابدأ القراءة
             </Link>
             <Link
-              href="/manga/neon-samurai"
+              href="/browse"
               className="inline-flex items-center gap-2 rounded-full border-2 border-ink bg-card px-6 py-3 text-sm font-extrabold text-foreground shadow-comic transition-transform hover:-translate-y-1 active:translate-y-0"
             >
-              <BookOpen className="size-5" /> Start Reading
+              <Library className="size-5" /> تصفح المكتبة
             </Link>
           </motion.div>
         </div>
@@ -87,9 +84,9 @@ export function Hero() {
             <motion.div
               animate={{ rotate: [0, 8, -8, 0] }}
               transition={{ duration: 5, repeat: Infinity }}
-              className="absolute -right-3 -top-3 rounded-full border-2 border-ink bg-[color:var(--yellow)] px-3 py-1 text-xs font-extrabold text-ink shadow-comic-sm"
+              className="absolute -left-3 -top-3 rounded-full border-2 border-ink bg-[color:var(--yellow)] px-3 py-1 text-xs font-extrabold text-ink shadow-comic-sm"
             >
-              Hi, I&apos;m Retro-chan!
+              مرحباً، أنا إليزابيث!
             </motion.div>
           </motion.div>
         </div>

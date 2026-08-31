@@ -1,29 +1,20 @@
 'use client'
 
-import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { cn } from '@/lib/utils'
+import { ElizabethDuck } from '@/components/elizabeth'
 
 type MascotMood = 'wave' | 'sleepy' | 'confused'
 
-const SRC: Record<MascotMood, string> = {
-  wave: '/mascot/retro-chan.png',
-  sleepy: '/mascot/retro-chan-sleepy.png',
-  confused: '/mascot/retro-chan-confused.png',
-}
-
-const ALT: Record<MascotMood, string> = {
-  wave: 'Retro-chan, a cute cat mascot in glasses and a kimono, waving hello',
-  sleepy: 'Retro-chan, a cute cat mascot, sleepily dozing off',
-  confused: 'Retro-chan, a cute cat mascot, looking confused and lost',
-}
-
+/**
+ * Static Elizabeth duck mascot, drawn purely with divs + CSS.
+ * The `mood` prop is kept for API compatibility with existing call sites.
+ */
 export function Mascot({
   mood = 'wave',
   size = 160,
   float = true,
   className,
-  priority = false,
 }: {
   mood?: MascotMood
   size?: number
@@ -33,27 +24,16 @@ export function Mascot({
 }) {
   return (
     <motion.div
-      className={cn('relative select-none', className)}
+      className={cn('relative grid select-none place-items-center', className)}
       style={{ width: size, height: size }}
-      animate={
-        float
-          ? { y: [0, -10, 0], rotate: [-2, 2, -2] }
-          : undefined
-      }
+      animate={float ? { y: [0, -10, 0], rotate: [-2, 2, -2] } : undefined}
       transition={
-        float
-          ? { duration: 4, repeat: Infinity, ease: 'easeInOut' }
-          : undefined
+        float ? { duration: 4, repeat: Infinity, ease: 'easeInOut' } : undefined
       }
+      role="img"
+      aria-label="إليزابيث، بطة المكتبة"
     >
-      <Image
-        src={SRC[mood] || '/placeholder.svg'}
-        alt={ALT[mood]}
-        fill
-        sizes={`${size}px`}
-        priority={priority}
-        className="object-contain drop-shadow-[3px_5px_0_rgba(58,47,42,0.15)]"
-      />
+      <ElizabethDuck scale={size / 185} />
     </motion.div>
   )
 }

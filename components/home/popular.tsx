@@ -10,14 +10,14 @@ export function Popular() {
     <section className="border-y-2 border-ink bg-card/40">
       <div className="mx-auto max-w-6xl px-4 py-12">
         <SectionHeading
-          kicker="Reader favorites"
-          title="Most Popular"
+          kicker="اختيارات القرّاء"
+          title="الأكثر رواجاً"
           action={
             <Link
               href="/browse"
               className="text-sm font-bold text-primary hover:underline"
             >
-              View all
+              عرض الكل
             </Link>
           }
         />

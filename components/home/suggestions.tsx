@@ -27,8 +27,8 @@ export function Suggestions() {
     <section className="border-t-2 border-ink bg-card/40">
       <div className="mx-auto max-w-6xl px-4 py-12">
         <SectionHeading
-          kicker="Help us choose what's next"
-          title="Top Voted Suggestions"
+          kicker="ساعدنا في اختيار ما هو قادم"
+          title="أكثر الاقتراحات تصويتاً"
         />
         <div className="grid gap-4 sm:grid-cols-2">
           <AnimatePresence>
@@ -63,7 +63,7 @@ export function Suggestions() {
                     <span className="text-pretty">{s.note}</span>
                   </p>
                   <p className="mt-2 text-xs font-semibold text-primary">
-                    suggested by @{s.by}
+                    اقترحه @{s.by}
                   </p>
                 </div>
               </motion.article>

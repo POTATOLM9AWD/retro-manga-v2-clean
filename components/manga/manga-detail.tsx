@@ -14,14 +14,15 @@ import {
   User,
   ChevronRight,
 } from 'lucide-react'
-import type { Manga } from '@/lib/data'
+import { type Manga, STATUS_AR, genreAr } from '@/lib/data'
 import { Pill, Rating, TypePill } from '@/components/ui-bits'
+import { useFavorites } from '@/lib/favorites'
 import { cn } from '@/lib/utils'
 
 function fmtDate(iso: string) {
-  return new Date(iso).toLocaleDateString('en-US', {
+  return new Date(iso).toLocaleDateString('ar', {
     year: 'numeric',
-    month: 'short',
+    month: 'long',
     day: 'numeric',
   })
 }
@@ -33,7 +34,8 @@ const statusTone = {
 } as const
 
 export function MangaDetail({ manga }: { manga: Manga }) {
-  const [fav, setFav] = useState(false)
+  const { isFavorite, toggle, ready } = useFavorites()
+  const fav = ready && isFavorite(manga.slug)
   const [copied, setCopied] = useState(false)
 
   const chaptersDesc = [...manga.chapters].sort((a, b) => b.number - a.number)
@@ -60,13 +62,13 @@ export function MangaDetail({ manga }: { manga: Manga }) {
       {/* Breadcrumb */}
       <nav className="mb-6 flex items-center gap-1 text-sm text-muted-foreground">
         <Link href="/" className="hover:text-primary">
-          Home
+          الرئيسية
         </Link>
-        <ChevronRight className="size-3.5" />
+        <ChevronRight className="size-3.5 rotate-180" />
         <Link href="/browse" className="hover:text-primary">
-          Browse
+          المكتبة
         </Link>
-        <ChevronRight className="size-3.5" />
+        <ChevronRight className="size-3.5 rotate-180" />
         <span className="font-semibold text-foreground">{manga.title}</span>
       </nav>
 
@@ -94,12 +96,12 @@ export function MangaDetail({ manga }: { manga: Manga }) {
               href={`/read/${manga.slug}/${firstChapter.number}`}
               className="inline-flex items-center justify-center gap-2 rounded-full border-2 border-ink bg-primary px-5 py-3 text-sm font-extrabold text-primary-foreground shadow-comic transition-transform hover:-translate-y-1 active:translate-y-0"
             >
-              <BookOpen className="size-5" /> Start Reading
+              <BookOpen className="size-5" /> ابدأ القراءة
             </Link>
             <div className="flex gap-2">
               <button
                 type="button"
-                onClick={() => setFav((f) => !f)}
+                onClick={() => toggle(manga.slug)}
                 aria-pressed={fav}
                 className={cn(
                   'inline-flex flex-1 items-center justify-center gap-2 rounded-full border-2 border-ink px-4 py-2.5 text-sm font-bold shadow-comic-sm transition-transform hover:-translate-y-0.5 active:translate-y-0',
@@ -109,12 +111,12 @@ export function MangaDetail({ manga }: { manga: Manga }) {
                 )}
               >
                 <Heart className={cn('size-4', fav && 'fill-current')} />
-                {fav ? 'Favorited' : 'Favorite'}
+                {fav ? 'في المفضلة' : 'أضف للمفضلة'}
               </button>
               <button
                 type="button"
                 onClick={share}
-                aria-label="Share"
+                aria-label="مشاركة"
                 className="inline-flex items-center justify-center gap-2 rounded-full border-2 border-ink bg-card px-4 py-2.5 text-sm font-bold text-foreground shadow-comic-sm transition-transform hover:-translate-y-0.5 active:translate-y-0"
               >
                 {copied ? (
@@ -123,7 +125,7 @@ export function MangaDetail({ manga }: { manga: Manga }) {
                   <Share2 className="size-4" />
                 )}
                 <span className="sr-only sm:not-sr-only">
-                  {copied ? 'Copied' : 'Share'}
+                  {copied ? 'تم النسخ' : 'مشاركة'}
                 </span>
               </button>
             </div>
@@ -138,10 +140,10 @@ export function MangaDetail({ manga }: { manga: Manga }) {
         >
           <div className="flex flex-wrap items-center gap-2">
             <TypePill type={manga.type} />
-            <Pill tone={statusTone[manga.status]}>{manga.status}</Pill>
+            <Pill tone={statusTone[manga.status]}>{STATUS_AR[manga.status]}</Pill>
             <Rating value={manga.rating} className="ml-1" />
             <span className="text-xs text-muted-foreground">
-              ({manga.votes.toLocaleString()} votes)
+              ({manga.votes.toLocaleString('ar')} تصويت)
             </span>
           </div>
 
@@ -161,16 +163,16 @@ export function MangaDetail({ manga }: { manga: Manga }) {
                 href={`/browse?genre=${encodeURIComponent(g)}`}
                 className="rounded-full border-2 border-border bg-card px-3 py-1 text-xs font-bold text-muted-foreground transition-colors hover:border-ink hover:text-foreground"
               >
-                {g}
+                {genreAr(g)}
               </Link>
             ))}
           </div>
 
           {/* Info grid */}
           <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3">
-            <InfoTile icon={User} label="Author" value={manga.author} />
-            <InfoTile icon={Calendar} label="Year" value={String(manga.year)} />
-            <InfoTile icon={Signal} label="Status" value={manga.status} />
+            <InfoTile icon={User} label="المؤلف" value={manga.author} />
+            <InfoTile icon={Calendar} label="السنة" value={String(manga.year)} />
+            <InfoTile icon={Signal} label="الحالة" value={STATUS_AR[manga.status]} />
           </div>
 
           <p className="mt-6 leading-relaxed text-foreground/90 text-pretty">
@@ -183,13 +185,13 @@ export function MangaDetail({ manga }: { manga: Manga }) {
       <section className="mt-12">
         <div className="mb-4 flex items-center justify-between">
           <h2 className="text-2xl font-extrabold text-foreground">
-            Chapters{' '}
+            الفصول{' '}
             <span className="text-base font-bold text-muted-foreground">
               ({manga.chapters.length})
             </span>
           </h2>
           <span className="text-xs font-semibold text-muted-foreground">
-            Newest first
+            الأحدث أولاً
           </span>
         </div>
 
@@ -215,7 +217,7 @@ export function MangaDetail({ manga }: { manga: Manga }) {
                       {c.title}
                     </p>
                     <p className="text-xs text-muted-foreground">
-                      {fmtDate(c.releasedAt)} · {c.pages.length} pages
+                      {fmtDate(c.releasedAt)} · {c.pages.length} صفحة
                     </p>
                   </div>
                 </div>

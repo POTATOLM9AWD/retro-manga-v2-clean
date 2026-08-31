@@ -8,6 +8,8 @@ import {
   ALL_TYPES,
   ALL_GENRES,
   ALL_YEARS,
+  TYPE_AR,
+  genreAr,
   type MangaType,
 } from '@/lib/data'
 import { MangaCard } from '@/components/manga-card'
@@ -50,11 +52,11 @@ export function BrowseView({ initialGenre }: { initialGenre?: string }) {
       <div className="mb-2 flex items-center gap-2 text-primary">
         <SlidersHorizontal className="size-4" />
         <span className="text-xs font-bold uppercase tracking-[0.2em]">
-          The Library
+          المكتبة
         </span>
       </div>
       <h1 className="text-3xl font-extrabold tracking-tight text-foreground sm:text-4xl">
-        Browse the Archive
+        تصفح الأرشيف
       </h1>
 
       {/* Search bar */}
@@ -64,15 +66,15 @@ export function BrowseView({ initialGenre }: { initialGenre?: string }) {
           type="search"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
-          placeholder="Search by title, author, or original name…"
-          aria-label="Search manga by name"
+          placeholder="ابحث بالعنوان أو المؤلف أو الاسم الأصلي…"
+          aria-label="ابحث عن مانجا بالاسم"
           className="w-full bg-transparent py-3 text-base text-foreground outline-none placeholder:text-muted-foreground"
         />
         {query && (
           <button
             type="button"
             onClick={() => setQuery('')}
-            aria-label="Clear search"
+            aria-label="مسح البحث"
             className="grid size-7 place-items-center rounded-full text-muted-foreground hover:bg-muted"
           >
             <X className="size-4" />
@@ -82,31 +84,31 @@ export function BrowseView({ initialGenre }: { initialGenre?: string }) {
 
       {/* Filters */}
       <div className="mt-6 flex flex-col gap-4">
-        <FilterRow label="Type">
+        <FilterRow label="النوع">
           <Chip active={type === 'All'} onClick={() => setType('All')}>
-            All
+            الكل
           </Chip>
           {ALL_TYPES.map((t) => (
             <Chip key={t} active={type === t} onClick={() => setType(t)}>
-              {t}
+              {TYPE_AR[t]}
             </Chip>
           ))}
         </FilterRow>
 
-        <FilterRow label="Genre">
+        <FilterRow label="التصنيف">
           <Chip active={genre === 'All'} onClick={() => setGenre('All')}>
-            All
+            الكل
           </Chip>
           {ALL_GENRES.map((g) => (
             <Chip key={g} active={genre === g} onClick={() => setGenre(g)}>
-              {g}
+              {genreAr(g)}
             </Chip>
           ))}
         </FilterRow>
 
-        <FilterRow label="Year">
+        <FilterRow label="السنة">
           <Chip active={year === 'All'} onClick={() => setYear('All')}>
-            All
+            الكل
           </Chip>
           {ALL_YEARS.map((y) => (
             <Chip key={y} active={year === y} onClick={() => setYear(y)}>
@@ -119,7 +121,7 @@ export function BrowseView({ initialGenre }: { initialGenre?: string }) {
       {/* Results header */}
       <div className="mt-8 flex items-center justify-between">
         <p className="text-sm font-semibold text-muted-foreground">
-          {results.length} result{results.length === 1 ? '' : 's'}
+          {results.length} نتيجة
         </p>
         {hasFilters && (
           <button
@@ -127,7 +129,7 @@ export function BrowseView({ initialGenre }: { initialGenre?: string }) {
             onClick={reset}
             className="inline-flex items-center gap-1.5 rounded-full border-2 border-ink bg-card px-3 py-1.5 text-xs font-bold text-foreground shadow-comic-sm transition-transform hover:-translate-y-0.5"
           >
-            <X className="size-3.5" /> Reset filters
+            <X className="size-3.5" /> إعادة ضبط الفلاتر
           </button>
         )}
       </div>
@@ -136,8 +138,8 @@ export function BrowseView({ initialGenre }: { initialGenre?: string }) {
       <div className="mt-4">
         {results.length === 0 ? (
           <EmptyState
-            title="No manga found"
-            message="Try a different title, or reset the filters and let Retro-chan fetch you something else."
+            title="لا توجد مانجا"
+            message="جرّب عنواناً آخر، أو أعد ضبط الفلاتر ودع إليزابيث تجلب لك شيئاً آخر."
           />
         ) : (
           <motion.div
