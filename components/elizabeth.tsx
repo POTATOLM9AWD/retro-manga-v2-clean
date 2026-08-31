@@ -29,23 +29,23 @@ export default function Elizabeth() {
         <div className="elizabeth-body"></div>
       </div>
       <style>{`
-       .elizabeth-wrapper{position:fixed;bottom:20px;left:0;z-index:9999;width:120px;height:150px;pointer-events:none;animation:walkLoop 30s linear infinite}
-        @keyframes walkLoop{0%{transform:translateX(-340px)}50%{transform:translateX(100vw)}100%{transform:translateX(100vw)}}
+       .elizabeth-wrapper{position:fixed;bottom:20px;left:0;z-index:9999;width:150px;height:160px;pointer-events:none;animation:walkLoop 30s linear infinite}
+        @keyframes walkLoop{0%{transform:translateX(-360px)}50%{transform:translateX(100vw)}100%{transform:translateX(100vw)}}
 
-       .elizabeth-body{width:110px;height:130px;background:url('/elizabeth-duck.png') center bottom / contain no-repeat;position:relative;transform-origin:50% 100%;animation:waddle 0.5s ease-in-out infinite;filter:drop-shadow(2px 4px 3px rgba(0,0,0,0.18))}
+       .elizabeth-body{position:absolute;bottom:0;left:22px;width:82px;height:146px;background:url('/elizabeth-duck.png') center bottom / contain no-repeat;transform-origin:50% 100%;animation:waddle 0.5s ease-in-out infinite;filter:drop-shadow(2px 4px 3px rgba(0,0,0,0.18))}
         @keyframes waddle{0%{transform:translateY(0) rotate(-4deg)}50%{transform:translateY(-5px) rotate(4deg)}100%{transform:translateY(0) rotate(-4deg)}}
 
-       .elizabeth-stick{position:absolute;bottom:74px;left:78px;width:5px;height:60px;background:linear-gradient(#b07f45,#8a5a28);border-radius:3px;transform:rotate(-14deg);transform-origin:bottom center;z-index:-1}
+       .elizabeth-stick{position:absolute;bottom:120px;left:34px;width:5px;height:52px;background:linear-gradient(#b07f45,#8a5a28);border-radius:3px;transform:rotate(-6deg);transform-origin:bottom center;animation:waddle 0.5s ease-in-out infinite;z-index:-1}
 
-       .elizabeth-board{position:absolute;bottom:132px;left:50%;transform:translateX(-45%);width:160px;background:#fffdf5;border:3px solid #1a1a1a;border-radius:12px;padding:9px 11px;text-align:center;box-shadow:3px 3px 0 #1a1a1a;animation:boardBob 0.5s ease-in-out infinite}
-        @keyframes boardBob{0%{transform:translateX(-45%) translateY(0) rotate(-2deg)}50%{transform:translateX(-45%) translateY(-4px) rotate(2deg)}100%{transform:translateX(-45%) translateY(0) rotate(-2deg)}}
+       .elizabeth-board{position:absolute;bottom:150px;left:2px;width:150px;background:#fffdf5;border:3px solid #1a1a1a;border-radius:12px;padding:9px 11px;text-align:center;box-shadow:3px 3px 0 #1a1a1a;animation:boardBob 0.5s ease-in-out infinite}
+        @keyframes boardBob{0%{transform:translateY(0) rotate(-2deg)}50%{transform:translateY(-4px) rotate(2deg)}100%{transform:translateY(0) rotate(-2deg)}}
        .elizabeth-board span{font-family:Tajawal,sans-serif;font-size:13px;font-weight:800;line-height:1.4;color:#c0392b}
 
        @media(max-width:768px){
-        .elizabeth-wrapper{bottom:12px;width:96px;height:120px}
-        .elizabeth-body{width:88px;height:104px}
-        .elizabeth-stick{bottom:60px;left:62px;height:48px}
-        .elizabeth-board{bottom:106px;width:134px}
+        .elizabeth-wrapper{bottom:12px;width:124px;height:132px}
+        .elizabeth-body{left:18px;width:68px;height:120px}
+        .elizabeth-stick{bottom:98px;left:28px;height:44px}
+        .elizabeth-board{bottom:124px;left:0;width:124px}
         .elizabeth-board span{font-size:11.5px}
        }
       `}</style>
